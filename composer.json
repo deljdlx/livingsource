@@ -3,11 +3,14 @@
 	"description": "Living source",
 
 	"repositories": [
-		{"type": "vcs", "url": "https://github.com/ElBiniou/phi-console"}
+		{"type": "vcs", "url": "https://github.com/ElBiniou/phi-console"},
+		{"type": "vcs", "url": "https://github.com/ElBiniou/phi-filesystem"}
 	],
 	"require":
 	{
-		"elbiniou/phi-console": "0.1.0"
+		"elbiniou/phi-console": "0.1.0",
+		"elbiniou/phi-filesystem": "dev-master"
+
 	},
 	"autoload": {
 		"psr-4": {

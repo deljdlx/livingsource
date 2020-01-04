@@ -1,0 +1,48 @@
+{
+    "metadata": {
+        "file": "\/mnt\/e\/shared\/var\/www\/__oclock\/project\/elbiniou-livingsource\/test\/source-file-storage.php",
+        "mime": "text\/x-php"
+    },
+    "versions": {
+        "1578173618": {
+            "id": "15e11165c0ecdb",
+            "datetime": "2020-01-04 23:49:00",
+            "name": "version:0",
+            "description": "",
+            "content": "<?php\n\nuse ElBiniou\\LivingSource\\Source;\nuse ElBiniou\\LivingSource\\SourceFileStorage;\n\n\nrequire(__DIR__.'\/..\/bootstrap.php');\n\n\n$storage = new SourceFileStorage(__DIR__.'\/versionned.json');\n\n$source = new Source(__FILE__);\n$source->createVersion();\n$storage->save($source);\n\n\n",
+            "checksum": "28dc9a47ef7035774f1fa8556064d005-914d976439d3b556b836bae5b5fe19d36a0fce2c"
+        },
+        "1578173659": {
+            "id": "15e11165c0ecea",
+            "datetime": "2020-01-04 23:49:00",
+            "name": "version:0",
+            "description": "",
+            "content": "<?php\n\nuse ElBiniou\\LivingSource\\Source;\nuse ElBiniou\\LivingSource\\SourceFileStorage;\n\n\nrequire(__DIR__.'\/..\/bootstrap.php');\n\n\n$storage = new SourceFileStorage(__DIR__.'\/versionned.json');\n\n$source = new Source(__FILE__);\n$source->createVersion();\n$storage->save($source);\n\n\n",
+            "checksum": "28dc9a47ef7035774f1fa8556064d005-914d976439d3b556b836bae5b5fe19d36a0fce2c"
+        },
+        "1578174337": {
+            "id": "15e11165c0ecf2",
+            "datetime": "2020-01-04 23:49:00",
+            "name": "version:0",
+            "description": "",
+            "content": "<?php\n\nuse ElBiniou\\LivingSource\\Source;\nuse ElBiniou\\LivingSource\\SourceFileStorage;\n\n\nrequire(__DIR__.'\/..\/bootstrap.php');\n\n\n$storage = new SourceFileStorage(__DIR__.'\/versionned.json');\n\n$source = new Source(__FILE__);\n$source->createVersion();\n$storage->save($source);\n\n\n",
+            "checksum": "28dc9a47ef7035774f1fa8556064d005-914d976439d3b556b836bae5b5fe19d36a0fce2c"
+        },
+        "1578178065": {
+            "id": "15e11165c0ecf8",
+            "datetime": "2020-01-04 23:49:00",
+            "name": "version:3",
+            "description": "",
+            "content": "<?php\n\nuse ElBiniou\\LivingSource\\Source;\nuse ElBiniou\\LivingSource\\SourceFileStorage;\n\n\nrequire(__DIR__.'\/..\/bootstrap.php');\n\n\n$source = new Source(__FILE__);\n\n$storage = new SourceFileStorage($source, __DIR__.'\/versionned.json');\n\n\n$source->createVersion();\n$storage->save($source);\n\n\n",
+            "checksum": "882b08b0316e8c1a78c39be725b5cf5c-17f059695916d21d543a15a33a306fded08979eb"
+        },
+        "1578178140": {
+            "id": "15e11165c0ecff",
+            "datetime": "2020-01-04 23:49:00",
+            "name": "version:4",
+            "description": "",
+            "content": "<?php\n\nuse ElBiniou\\LivingSource\\Source;\nuse ElBiniou\\LivingSource\\SourceFileStorage;\n\n\nrequire(__DIR__.'\/..\/bootstrap.php');\n\n\n$source = new Source(__FILE__);\n\n$storage = new SourceFileStorage($source, __DIR__.'\/versionned.json');\n\n\n$source->createVersion();\n$storage->save($source);\n\n\n\nforeach ($storage->getVersion() as $version) {\n    print_r($version);\n    echo \"\\n======================================================================\\n\";\n}\n\n",
+            "checksum": "23149c75a00902e75181dd69994ec922-81ffc2657aaabd7fcd331a3714cee87735c74b9a"
+        }
+    }
+}
