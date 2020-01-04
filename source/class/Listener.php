@@ -26,7 +26,7 @@ class Listener
     }
 
 
-    public function register($callback)
+    public function register(Callable $callback)
     {
         $this->callbacks[] = $callback;
         return $this;
@@ -63,7 +63,8 @@ class Listener
                 $modified = filemtime($file);
                 if (!isset($metadatas[$file])) {
                     foreach ($this->callbacks as $callback) {
-                        $callback($file, self::EVENT_NEW);
+                        call_user_func_array($callback, [$file, self::EVENT_NEW]);
+                        //$callback($file, self::EVENT_NEW);
                     }
                 }
                 else {

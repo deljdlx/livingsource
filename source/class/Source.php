@@ -47,8 +47,6 @@ class Source
                 $checksumControl = true;
                 foreach ($this->versions as $registeredVersion) {
 
-                    echo $registeredVersion['checksum'] ."\t". $version['checksum']."\n";
-
                     if($registeredVersion['checksum'] == $version['checksum']) {
                         $checksumControl = false;
                         break;
