@@ -62,9 +62,13 @@ class Listener
 
                 $modified = filemtime($file);
                 if (!isset($metadatas[$file])) {
+                    $event = new Event([
+                        'file' => $file,
+                        'type' => self::EVENT_NEW,
+                        'time' => time()
+                    ]);
                     foreach ($this->callbacks as $callback) {
-                        call_user_func_array($callback, [$file, self::EVENT_NEW]);
-                        //$callback($file, self::EVENT_NEW);
+                        call_user_func_array($callback, [$event]);
                     }
                 }
                 else {
@@ -73,8 +77,13 @@ class Listener
 
                         $checksum = md5(file_get_contents($file));
                         if ($checksum != $metadatas[$file]['checksum']) {
+                            $event = new Event([
+                                'file' => $file,
+                                'type' => self::EVENT_UPDATED,
+                                'time' => time()
+                            ]);
                             foreach ($this->callbacks as $callback) {
-                                $callback($file, self::EVENT_UPDATED);
+                                call_user_func_array($callback, [$event]);
                             }
 
                             $metadatas[$file]['checksum'] = $checksum;
