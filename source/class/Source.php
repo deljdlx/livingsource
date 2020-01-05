@@ -115,7 +115,17 @@ class Source
 
     public function getMime()
     {
-        return mime_content_type($this->source);
+        if($metadata = $this->getMetadata()) {
+            return $metadata['mime'];
+        }
+        else {
+            if($this->source) {
+                return mime_content_type($this->source);
+            }
+        }
+
+        return false;
+
     }
 
 
