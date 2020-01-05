@@ -12,7 +12,7 @@ class Source
      */
     protected $versions = [];
 
-    public function __construct($source)
+    public function __construct($source = null)
     {
         $this->source = $source;
     }
