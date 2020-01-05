@@ -10,8 +10,11 @@ class SourcePathStorage extends SourceStorage
     protected $path;
 
 
-    public function __construct(Source $source, $path)
+    public function __construct(Source $source, $path, $autoCreate = false)
     {
+        if($autoCreate && !is_dir($path)) {
+            mkdir($path);
+        }
         parent::__construct($source);
         $this->path = $path;
 
@@ -68,17 +71,26 @@ class SourcePathStorage extends SourceStorage
     }
 
 
-
-
-
     public function save()
     {
 
         $this->doBeforeSave();
         $versions = $this->source->getVersions();
 
+
+        $versionFilepath = $this->getVersionFilepath();
+        if(!is_dir($versionFilepath)) {
+            mkdir($versionFilepath);
+        }
+        if(!is_file($this->path.'/metadata.json')) {
+            file_put_contents(
+                $this->path.'/metadata.json',
+                json_encode($this->source->getMetadata(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
+            );
+        }
+
         foreach ($versions as $key => $version) {
-            $file = $this->path.'/'.$this->source->getName().'.'.$key.'.json';
+            $file = $versionFilepath.'/'.$this->source->getName().'.'.$key.'.json';
             if(!is_file($file)) {
 
                 $data = [
@@ -92,6 +104,11 @@ class SourcePathStorage extends SourceStorage
         }
 
 
+    }
+
+    public function getVersionFilepath()
+    {
+        return $this->path.'/versions';
     }
 
 }
