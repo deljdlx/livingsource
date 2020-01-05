@@ -12,9 +12,17 @@ class Source
      */
     protected $versions = [];
 
+    protected $metadata = [];
+
     public function __construct($source = null)
     {
         $this->source = $source;
+        if(is_file($this->source)) {
+            $this->metadata = [
+                'file' => $this->source,
+                'mime' => mime_content_type($this->source),
+            ];
+        }
     }
 
 
@@ -29,13 +37,6 @@ class Source
     }
 
 
-    public function getMetadata()
-    {
-        return [
-            'file' => realpath($this->getPath()),
-            'mime' => $this->getMime(),
-        ];
-    }
 
     public function createVersion($name = null, $description = '', $autoAppend = true, $controlChecksum = true)
     {
@@ -113,10 +114,23 @@ class Source
         return $this;
     }
 
+
+    public function loadMetadata($data)
+    {
+        $this->metadata = $data;
+        return $this;
+    }
+
+
+    public function getMetadata()
+    {
+        return $this->metadata;
+    }
+
     public function getMime()
     {
-        if($metadata = $this->getMetadata()) {
-            return $metadata['mime'];
+        if($this->metadata['mime']) {
+            return $this->metadata['mime'];
         }
         else {
             if($this->source) {

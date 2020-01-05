@@ -6,6 +6,9 @@ namespace ElBiniou\LivingSource;
 class SourceFileStorage extends SourceStorage
 {
 
+    /**
+     * @var Source
+     */
     private $versionnedSource;
 
 
@@ -17,8 +20,21 @@ class SourceFileStorage extends SourceStorage
 
         $this->versionnedSource = $versionned;
         if (is_file($this->versionnedSource)) {
+            $this->loadMetadata();
             $this->loadVersions();
         }
+    }
+
+
+    public function loadMetadata()
+    {
+        if (!is_file($this->versionnedSource)) {
+            return $this;
+        }
+
+        $content = file_get_contents($this->versionnedSource);
+        $data = json_decode($content, true);
+        $this->source->loadMetadata($data['metadata']);
     }
 
     public function getVersion()

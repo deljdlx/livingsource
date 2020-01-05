@@ -8,8 +8,8 @@
 	],
 	"require":
 	{
-		"elbiniou/phi-console": "0.1.0",
-		"elbiniou/phi-filesystem": "dev-master"
+		"elbiniou/phi-console": "*",
+		"elbiniou/phi-filesystem": "*"
 
 	},
 	"autoload": {
